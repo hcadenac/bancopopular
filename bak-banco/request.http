@@ -1,0 +1,12 @@
+GET  http://localhost:9000/api/users/61babada29b155700812fba8 HTTP/1.1
+      Content-Type: application/json
+
+# {
+#      "nombre": "MANUEl DIAZ LARA",
+#      "tipodoc": "Cedula",
+#      "documento": 11234536,
+#      "nacimiento": "01-12-1970",
+#      "expedicion": "01-12-1990",
+#      "ingresos": 4000000,
+#      "egresos": 850324
+#  }
