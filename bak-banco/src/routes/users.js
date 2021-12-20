@@ -28,7 +28,6 @@ router.get('/users/:id', (req, res)=>{
     .catch((error)=> res.json({message:error}))  
 });
 
-
 //actualizar usuario
 router.put('/users/:id', (req, res)=>{
     const {id}= req.params;
@@ -47,4 +46,47 @@ router.delete('/users/:id', (req, res)=>{
     .then((data)=>res.json(data))
     .catch((error)=> res.json({message:error}))  
 });
+
+//login usuario
+router.post('/login', async (req, res) => {
+
+    const { documento, contrasena } = req.body;
+
+    let user = await userSchema.findOne({
+        documento        
+    }); 
+    
+    if (!user)
+        return res.status(400).json({
+            message: "Usuario no existe"
+        });
+
+      const isMatch = await bcrypt.compare(contrasena, user.contrasena);
+      if (!isMatch)
+        return res.status(400).json({
+          message: "contrasena incorrecta"
+        });
+
+      const payload = {
+        user: {
+          id: user.id
+        }
+     };
+
+     jwt.sign(
+        payload,
+        "randomString",
+        {
+          expiresIn: 3600
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.status(200).json({
+            token
+          });
+        }
+      );
+
+});
+
 module.exports= router;

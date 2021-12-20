@@ -27,6 +27,10 @@ const userSchema= mongoose.Schema({
     egresos:{
         type:Number,
         required:true
+    },
+    contrasena:{
+        type:String,
+        required:true
     }
 });
 

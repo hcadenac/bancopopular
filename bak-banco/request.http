@@ -1,5 +1,12 @@
-GET  http://localhost:9000/api/users/61babada29b155700812fba8 HTTP/1.1
+POST http://localhost:9000/api/pagos HTTP/1.1
       Content-Type: application/json
+
+      {
+            "documento": 6543241,
+            "fecha": "01-07-2020",
+            "referencia": 354894,
+            "valor": 325400
+      }
 
 # {
 #      "nombre": "MANUEl DIAZ LARA",
